@@ -1,0 +1,57 @@
+<!-- <div class="flower" style="--t: small ccw"></div> -->
+<div class="flower-container">
+  <div class="flower" style="--t: large cw;"></div>
+  <div class="flower" style="--t: large cw;"></div>
+</div>
+
+<style lang="scss">
+  @use "sass:math";
+
+  $n: 10;
+
+  .flower-container {
+    padding: 0 2em 0 2em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .flower :first-child {
+    justify-content: end;
+  }
+
+  .flower {
+    transition: transform 1s ease;
+    width: 100px;
+    aspect-ratio: 1;
+    background: linear-gradient(60deg, #330502, #330502);
+    $m: ();
+    $r: 50%/ (1 + 1 / math.sin(180deg / $n));
+    $d: 50%/ (math.tan(180deg / $n) + 1 / math.cos(180deg / $n));
+    $m: append($m, from 50% + $d * math.cos(0) 50% + $d * math.sin(0), comma);
+
+    @for $i from 1 through $n {
+      $m: append(
+        $m,
+        arc
+          to
+          50% +
+          $d *
+          math.cos($i * 360deg / $n)
+          50% +
+          $d *
+          math.sin($i * 360deg / $n)
+          of
+          $r
+          var(--t),
+        comma
+      );
+    }
+
+    clip-path: shape(#{$m});
+
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+</style>

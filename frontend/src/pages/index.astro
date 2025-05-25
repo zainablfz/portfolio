@@ -1,16 +1,172 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Flower from "../components/Flower.astro";
+import Sparkle from "../components/Sparkle.astro";
+import About from "../components/About.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <nav>
+    <ul>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+    <select>
+      <option value="first">First option</option>
+      <option value="second">Second option</option>
+      <option value="third">Third option</option>
+    </select>
+  </nav>
+
+  <section>
+    <Flower />
+    <Sparkle />
+    <p>Zainab el Faiz</p>
+    <Sparkle />
+    <h1>Frontend Developer</h1>
+    <Sparkle />
+    <Flower />
+  </section>
+
+  <About />
+</BaseLayout>
+
+<style>
+  section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    @media (min-width: 50rem) {
+      justify-content: space-between;
+      flex-wrap: unset;
+    }
+  }
+
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    margin: 0 auto;
+    list-style: none;
+  }
+
+  li {
+    padding: 0.5em 0 0 1em;
+  }
+
+  select {
+    appearance: none;
+
+    @supports (appearance: base-select) {
+      &,
+      &::picker(select) {
+        appearance: base-select;
+      }
+    }
+  }
+
+  select {
+    min-width: 200px;
+    align-items: center;
+    color: var(--main-color-2);
+    margin: 1em 1em 0 0;
+    padding-block: 12px;
+    /* padding-inline: 10px 30px; */
+    border-radius: 5px;
+    border: 2px solid var(--main-color-2);
+    cursor: pointer;
+    font-weight: 700;
+    background: transparent;
+
+    @supports (appearance: base-select) {
+      padding-inline: 10px;
+
+      &::picker-icon {
+        content: "";
+        width: 0.5em;
+        height: 0.5em;
+        background-color: currentcolor;
+        clip-path: polygon(0 0.1em, 100% 0.1em, 50% 100%, 0 0.1em);
+        transition: 0.3s;
+      }
+
+      &:open::picker-icon {
+        rotate: x 180deg;
+      }
+
+      &::picker(select) {
+        padding: 0;
+        margin-top: 5px;
+        border: 2px solid var(--main-color-2);
+        background: var(--main-color-1);
+        border-radius: 5px;
+        font-weight: 400;
+
+        opacity: 0;
+        height: 0;
+        overflow: clip;
+        transition:
+          height 0.5s ease-out,
+          opacity 0.5s ease-out,
+          overlay 0.5s,
+          display 0.5s;
+        transition-behavior: allow-discrete;
+      }
+
+      &:open::picker(select) {
+        opacity: 1;
+        height: calc-size(auto, size);
+        overflow: auto;
+        @starting-style {
+          opacity: 0;
+          height: 0;
+        }
+      }
+
+      option {
+        padding: 10px;
+        border-top: 1px solid var(--main-color-2);
+        cursor: pointer;
+        transition-property: color, background;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-out;
+
+        &:where(:hover, :focus, :active) {
+          background: var(--accent-color-2);
+          color: white;
+        }
+
+        &:checked {
+          background: var(--main-color-2);
+          color: white;
+        }
+
+        &::checkmark {
+          display: none;
+        }
+
+        &:first-child {
+          border: 0;
+        }
+      }
+    }
+  }
+
+  h1 {
+    font-size: clamp(2rem, 7vw + 2rem, 10rem);
+    text-align: center;
+  }
+
+  p {
+    font-size: clamp(1rem, 2vw + 1.5rem, 1.7rem);
+  }
+</style>

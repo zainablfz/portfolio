@@ -1,0 +1,17 @@
+<div class="spark"></div>
+
+<style lang="scss">
+  .spark {
+    width: 50px;
+    aspect-ratio: 1;
+    background-color: var(--main-color-2);
+    --g: /41.422% 41.422% radial-gradient(#000 calc(71% - 1px), #0000 71%) no-repeat;
+    mask:
+      radial-gradient(100% 100%, #000 calc(20.711% - 1px), #0000 20.711%)
+        subtract,
+      85.906% 84.796% var(--g),
+      15.204% 85.906% var(--g),
+      14.094% 15.204% var(--g),
+      84.796% 14.094% var(--g);
+  }
+</style>
