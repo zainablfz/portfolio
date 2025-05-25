@@ -1,0 +1,115 @@
+<section class="two-images">
+  <h1>about me</h1>
+  <div class="content">
+    <div class="images">
+      <img
+        src="/images/Sunset-water.png"
+        alt="Grace Hopper casually smoking a cigarette"
+        width="200"
+        height="100"
+      />
+      <img
+        src="/images/Sunset-field.png"
+        alt="painting of Ada Lovelace"
+        width="200"
+        height="300"
+      />
+    </div>
+    <div class="text">
+      <p>
+        Hi! I'm Zainab, a 21-year-old student from Amsterdam. I'm currently in
+        my final year of the Frontend Design & Development program at the
+        Hogeschool van Amsterdam (HvA). After graduating later this year, I plan
+        to continue expanding my skills in design by studying Communication and
+        Multimedia Design.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  section {
+    background-color: var(--main-color-2);
+    height: 100vh;
+  }
+
+  h1 {
+    color: var(--main-color-1);
+    padding-top: 0.3em;
+    font-size: clamp(2rem, 7vw + 2rem, 10rem);
+    text-align: center;
+  }
+  p {
+    color: var(--main-color-1);
+    font-family: var(--regular-font);
+  }
+
+  .content {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+    max-width: 1440px;
+    padding: clamp(4rem, 10vw, 10rem) 1.5rem;
+    .images {
+      grid-column: span 6;
+      img {
+        height: auto;
+      }
+    }
+    .text {
+      grid-column: span 6;
+      @media (prefers-reduced-motion: no-preference) {
+        animation-timeline: --section;
+        animation-range: cover 20%;
+        transform: translateY(5vw);
+        animation-name: translate-up;
+      }
+    }
+    & > img,
+    & > .inner {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .two-images {
+    view-timeline-name: --section;
+
+    .images {
+      display: flex;
+      justify-content: center;
+      img {
+        --margin: 0 -25% 0 0;
+        --rotation: -10deg;
+        display: block;
+        width: 30%;
+        transform: scale(0.9);
+        border-radius: 1rem;
+        @media (prefers-reduced-motion: no-preference) {
+          animation-timeline: --section;
+          animation-range: cover;
+          animation-name: rotate-in;
+          margin: var(--margin);
+        }
+        & + img {
+          --margin: 0 0 0 -25%;
+          --rotation: 10deg;
+        }
+      }
+    }
+    .text {
+      grid-column: span 6;
+    }
+  }
+
+  @keyframes rotate-in {
+    from {
+      rotate: 0;
+      margin: var(--margin);
+    }
+    to {
+      margin: 0;
+      rotate: var(--rotation);
+    }
+  }
+</style>

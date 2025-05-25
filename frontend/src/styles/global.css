@@ -3,6 +3,11 @@
   src: url("/fonts/Atop-R99O3.ttf");
 }
 
+@font-face {
+  font-family: "Anonymous Pro";
+  src: url("/fonts/AnonymousPro-Regular.ttf");
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,7 +19,7 @@
   --main-color-2: #330502;
   --accent-color-2: #cbabb2;
   --statement-font: "Atop", sans-serif;
-  --regular-font: "Puritan", sans-serif;
+  --regular-font: "Anonymous Pro", sans-serif;
 }
 
 body {
