@@ -6,7 +6,7 @@
         src="/images/Sunset-water.png"
         alt="Grace Hopper casually smoking a cigarette"
         width="200"
-        height="100"
+        height="300"
       />
       <img
         src="/images/Sunset-field.png"
@@ -45,71 +45,36 @@
   }
 
   .content {
-    display: grid;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1.5rem;
-    max-width: 1440px;
-    padding: clamp(4rem, 10vw, 10rem) 1.5rem;
-    .images {
-      grid-column: span 6;
-      img {
-        height: auto;
-      }
-    }
-    .text {
-      grid-column: span 6;
-      @media (prefers-reduced-motion: no-preference) {
-        animation-timeline: --section;
-        animation-range: cover 20%;
-        transform: translateY(5vw);
-        animation-name: translate-up;
-      }
-    }
-    & > img,
-    & > .inner {
-      grid-column: 1 / -1;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .text {
+    padding-top: 2em;
+    max-width: 30rem;
+  }
+
+  img {
+    @media (prefers-reduced-motion: no-preference) {
+      view-timeline-name: --revealing-image;
+      view-timeline-axis: block;
+      animation: reveal linear both;
+      animation-timeline: --revealing-image;
+      animation-range: entry 25% cover 50%;
     }
   }
 
-  .two-images {
-    view-timeline-name: --section;
-
-    .images {
-      display: flex;
-      justify-content: center;
-      img {
-        --margin: 0 -25% 0 0;
-        --rotation: -10deg;
-        display: block;
-        width: 30%;
-        transform: scale(0.9);
-        border-radius: 1rem;
-        @media (prefers-reduced-motion: no-preference) {
-          animation-timeline: --section;
-          animation-range: cover;
-          animation-name: rotate-in;
-          margin: var(--margin);
-        }
-        & + img {
-          --margin: 0 0 0 -25%;
-          --rotation: 10deg;
-        }
-      }
-    }
-    .text {
-      grid-column: span 6;
-    }
-  }
-
-  @keyframes rotate-in {
+  @keyframes reveal {
     from {
-      rotate: 0;
-      margin: var(--margin);
+      opacity: 0;
+      clip-path: inset(45% 20% 45% 20%);
     }
     to {
-      margin: 0;
-      rotate: var(--rotation);
+      opacity: 1;
+      clip-path: inset(0% 0% 0% 0%);
     }
   }
 </style>

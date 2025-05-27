@@ -21,6 +21,9 @@
   }
 
   .flower {
+    animation: spin-on-scroll linear;
+    animation-timeline: scroll();
+    animation-range: entry 0% exit 100%;
     transition: transform 1s ease;
     width: 100px;
     aspect-ratio: 1;
@@ -51,6 +54,15 @@
     clip-path: shape(#{$m});
 
     &:hover {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin-on-scroll {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
       transform: rotate(360deg);
     }
   }

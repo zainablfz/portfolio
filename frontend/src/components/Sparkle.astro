@@ -2,6 +2,9 @@
 
 <style lang="scss">
   .spark {
+    animation: spin-on-scroll linear;
+    animation-timeline: scroll();
+    animation-range: entry 0% exit 100%;
     width: 50px;
     aspect-ratio: 1;
     background-color: var(--main-color-2);
@@ -13,5 +16,14 @@
       15.204% 85.906% var(--g),
       14.094% 15.204% var(--g),
       84.796% 14.094% var(--g);
+  }
+
+  @keyframes spin-on-scroll {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>

@@ -24,6 +24,7 @@
 
 body {
   background: var(--main-color-1);
+  overflow-x: hidden;
 }
 
 h1 {
@@ -40,8 +41,4 @@ li {
   font-family: var(--statement-font);
   color: var(--main-color-2);
   font-size: 28px;
-}
-
-.astro-dev-toolbar {
-  display: none !important;
 }
